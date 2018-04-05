@@ -12,8 +12,8 @@ config :logger, level: :warn
 # Configure your database
 config :parking, Parking.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
+  username: "michael",
+  password: "",
   database: "parking_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox

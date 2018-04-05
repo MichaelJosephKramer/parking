@@ -57,8 +57,8 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :parking, Parking.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
+  username: "michael",
+  password: "",
   database: "parking_dev",
   hostname: "localhost",
   pool_size: 10
