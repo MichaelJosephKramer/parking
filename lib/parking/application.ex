@@ -11,7 +11,7 @@ defmodule Parking.Application do
       # Start the Ecto repository
       supervisor(Parking.Repo, []),
       # Start the endpoint when the application starts
-      supervisor(ParkingWeb.Endpoint, []),
+      supervisor(ParkingWeb.Endpoint, [])
       # Start your own worker by calling: Parking.Worker.start_link(arg1, arg2, arg3)
       # worker(Parking.Worker, [arg1, arg2, arg3]),
     ]

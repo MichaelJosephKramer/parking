@@ -26,13 +26,13 @@ defmodule ParkingWeb.ConnCase do
     end
   end
 
-
   setup tags do
     :ok = Ecto.Adapters.SQL.Sandbox.checkout(Parking.Repo)
+
     unless tags[:async] do
       Ecto.Adapters.SQL.Sandbox.mode(Parking.Repo, {:shared, self()})
     end
+
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
-
 end
