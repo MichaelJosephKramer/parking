@@ -13,15 +13,30 @@ defmodule ParkingWeb.Router do
     plug(:accepts, ["json"])
   end
 
-  scope "/", ParkingWeb do
-    # Use the default browser stack
-    pipe_through(:browser)
-
-    get("/", PageController, :index)
-  end
-
   # Other scopes may use custom stacks.
   # scope "/api", ParkingWeb do
   #   pipe_through :api
   # end
+
+  pipeline :auth do
+    plug(Parking.Auth.Pipeline)
+  end
+
+  pipeline :ensure_auth do
+    plug(Guardian.Plug.EnsureAuthenticated)
+  end
+
+  # Maybe logged in scope
+  scope "/", ParkingWeb do
+    pipe_through([:browser, :auth])
+    get("/", PageController, :index)
+    post("/", PageController, :login)
+    get("/logout", PageController, :logout)
+  end
+
+  # Definitely logged in scope
+  scope "/", ParkingWeb do
+    pipe_through([:browser, :auth, :ensure_auth])
+    get("/secret", PageController, :secret)
+  end
 end
